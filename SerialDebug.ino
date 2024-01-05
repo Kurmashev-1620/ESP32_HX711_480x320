@@ -45,7 +45,7 @@ void SerialDebug()											                    //
     //----------------------------------------------------------------------------------------------------------------------------
     case 't':                                               // 
       LoadCell.tareNoDelay();                               // 
-      while (!LoadCell.getTareStatus()){}                   // 
+      while (LoadCell.getTareStatus()){}                    // 
       tft.setCursor(0, 10);                                 // 
       tft.print("Tare: ");                                  // 
       tft.println("Complite");                              //
