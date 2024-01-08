@@ -51,12 +51,12 @@ void Print_ds18b20()                                        //
   //------------------------------------------------------------------------------------------------------------------------------
   if (flag_DS18B20_0)                                       //
   {
-    printTemperature(insideThermometer, 0, 310, 1);         // 
+    printTemperature(insideThermometer, 0, 310, 1, 2);      // 
   }
   //------------------------------------------------------------------------------------------------------------------------------
   if (flag_DS18B20_1)                                       // 
   {
-    printTemperature(outsideThermometer, 0, 300, 1);        // 
+    printTemperature(outsideThermometer, 0, 300, 1, 3);     // 
   }
 }
 //================================================================================================================================
@@ -72,12 +72,8 @@ void printAddress(DeviceAddress deviceAddress)              //
   }
 }
 //================================================================================================================================
-void printTemperature(DeviceAddress deviceAddress, uint16_t x, uint16_t y, uint8_t size)
+void printTemperature(DeviceAddress deviceAddress, uint16_t x, uint16_t y, uint8_t size, uint8_t inDex)
 {
-  /*
-   * Добавить отрисовку прямоугольника
-  */
-
   tft.setTextColor(TFT_WHITE, TFT_BLACK);					          // Установить цвет текста
   tft.setTextSize(size);										                // Установить размер символов
   tft.setCursor(x, y);										                  // Установить координату
@@ -87,11 +83,14 @@ void printTemperature(DeviceAddress deviceAddress, uint16_t x, uint16_t y, uint8
   {
     tft.setTextColor(TFT_YELLOW, TFT_RED);					        // Установить цвет текста
     tft.print(" _Error_!!!_");                              //
+    array_data_send[inDex] = 99.99;                         // 
     return;                                                 // 
   }
   tft.print("Temp ");                                       // 
   tft.print(tempC);                                         // 
   tft.print(" C");                                          // 
+
+  array_data_send[inDex] = tempC;                           // 
 }
 //================================================================================================================================
 void printResolution(DeviceAddress deviceAddress)           // 

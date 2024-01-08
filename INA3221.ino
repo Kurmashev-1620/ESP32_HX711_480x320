@@ -29,26 +29,34 @@ void Print_INA3221(uint16_t x, uint16_t y)                  // Вывести н
     tft.setCursor(x, y);								                    // Установить координату
     tft.print("Channel 1: ");                               // 
     tft.print(current[0], PRINT_DEC_POINTS);                // Вывести значение тока
-    tft.print("A, ");                                       // 
+    tft.print(" A, ");                                      // 
     tft.print(voltage[0], PRINT_DEC_POINTS);                // Вывести значение напряжения
     tft.print(' ');                                         // 
-    tft.println("V");                                       // 
+    tft.println("V  ");                                     // 
     //----------------------------------------------------------------------------------------------------------------------------
     tft.setCursor(x, y + 10);								                // Установить координату
     tft.print("Channel 2: ");                               // 
     tft.print(current[1], PRINT_DEC_POINTS);                // Вывести значение тока
-    tft.print("A, ");                                       // 
+    tft.print(" A, ");                                      // 
     tft.print(voltage[1], PRINT_DEC_POINTS);                // Вывести значение напряжения
     tft.print(' ');                                         // 
-    tft.println("V");                                       // 
+    tft.println("V  ");                                     // 
     //----------------------------------------------------------------------------------------------------------------------------
     tft.setCursor(x, y + 20);								                // Установить координату
     tft.print("Channel 3: ");                               // 
     tft.print(current[2], PRINT_DEC_POINTS);                // Вывести значение тока
-    tft.print("A, ");                                       // 
+    tft.print(" A, ");                                      // 
     tft.print(voltage[2], PRINT_DEC_POINTS);                // Вывести значение напряжения
     tft.print(' ');                                         // 
-    tft.println("V");                                       // 
+    tft.println("V  ");                                     // 
+    //----------------------------------------------------------------------------------------------------------------------------
+    String val_str_v = "4," + \
+    String(current[0], PRINT_DEC_POINTS) + ";";             // 
+    Serial.println(val_str_v);                              //
+    //----------------------------------------------------------------------------------------------------------------------------
+    String val_str_c = "5," + \
+    String(voltage[0], PRINT_DEC_POINTS) + ";";             // 
+    Serial.println(val_str_c);                              //
     //----------------------------------------------------------------------------------------------------------------------------
     timeINA = millis();                                     // Сбросить таймер
   }

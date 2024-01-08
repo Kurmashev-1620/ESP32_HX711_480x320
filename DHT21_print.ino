@@ -48,6 +48,8 @@ void printHumi(int x, int y, uint8_t size)                  //
     tft.print("Humidity: ");                                // 
     tft.print(h);                                           // 
     tft.println(" %");                                      // 
+
+    array_data_send[0] = h;                                 // 
   }
   else
   {
@@ -57,6 +59,8 @@ void printHumi(int x, int y, uint8_t size)                  //
     tft.print("Humidity: ");                                // 
     tft.print("ERROR");                                     // 
     tft.println(" %");                                      // 
+
+    array_data_send[0] = 99.99;                             // 
   }
 }
 //================================================================================================================================
@@ -72,6 +76,8 @@ void printTemp(int x, int y, uint8_t size)                  //
     tft.print("Temperature: ");                             // 
     tft.print(t);                                           // 
     tft.println(" C");                                      // 
+
+    array_data_send[1] = t;                                 // 
   }
   else
   {
@@ -81,6 +87,8 @@ void printTemp(int x, int y, uint8_t size)                  //
     tft.print("Temperature: ");                             // 
     tft.print("ERROR");                                     // 
     tft.println(" C");                                      // 
+
+    array_data_send[1] = 99.99;                             // 
   }
 }
 //================================================================================================================================
