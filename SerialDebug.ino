@@ -15,12 +15,14 @@ void SerialDebug()											                    // Дебаг
       {
         analogWrite(auger_motor, val);					            // 
         Display_write_level_PWM_1(val);                     // 
+
+        val = map(val, 0, 255, 0, 100);                     //
+
         tft.setCursor(260, 50);                             // 
         tft.print("auger_motor: ");                         // 
         tft.print(val);                                     // 
+        tft.print(" %");                                    // 
         tft.println("  ");                                  // 
-
-        val = map(val, 0, 255, 0, 100);                     //
 
         String val_str = "1," + String(val) + ";";          // 
         Serial.println(val_str);                            //
@@ -32,12 +34,14 @@ void SerialDebug()											                    // Дебаг
       {
         analogWrite(vibration_motor_1, val);					      // 
         Display_write_level_PWM_2(val);                     // 
+
+        val = map(val, 0, 255, 0, 100);                     //
+
         tft.setCursor(260, 60);                             // 
         tft.print("vibration_motor_1: ");                   // 
         tft.print(val);                                     // 
+        tft.print(" %");                                    // 
         tft.println("  ");                                  // 
-
-        val = map(val, 0, 255, 0, 100);                     //
 
         String val_str = "2," + String(val) + ";";          // 
         Serial.println(val_str);                            //
@@ -49,12 +53,14 @@ void SerialDebug()											                    // Дебаг
       {
         analogWrite(vibration_motor_2, val);					      // 
         Display_write_level_PWM_3(val);                     // 
+
+        val = map(val, 0, 255, 0, 100);                     //
+
         tft.setCursor(260, 70);                             // 
         tft.print("vibration_motor_2: ");                   // 
         tft.print(val);                                     // 
+        tft.print(" %");                                    // 
         tft.println("  ");                                  // 
-
-        val = map(val, 0, 255, 0, 100);                     //
 
         String val_str = "3," + String(val) + ";";          // 
         Serial.println(val_str);                            //
@@ -71,7 +77,9 @@ void SerialDebug()											                    // Дебаг
       break;											                          // 
     //----------------------------------------------------------------------------------------------------------------------------
     case 4:                                                 //  
-      calibrationValue = val;												        // 
+      float caliValue;
+      caliValue = (float)val / 100.0;                       // Преобразование val в float и деление на 100
+      calibrationValue = caliValue;												  // 
       
       if (flag_hx711)                                       // 
       {
@@ -91,11 +99,46 @@ void SerialDebug()											                    // Дебаг
       break;                                                // 
     //----------------------------------------------------------------------------------------------------------------------------
     case 6:                                                 // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_BLACK);        // Вывести квадрат
       x_readPrr = val;												              // 
       tft.setCursor(0, 0);                                  // 
       tft.print("x_readPrr: ");                             // 
       tft.println(x_readPrr);                               // 
-      flag_bitMap_hx711 = true;                             // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_WHITE);        // Вывести квадрат
+      break;                                                // 
+    //----------------------------------------------------------------------------------------------------------------------------
+    case 7:                                                 // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_BLACK);        // Вывести квадрат
+      y_readPrr = val;												              // 
+      tft.setCursor(0, 10);                                 // 
+      tft.print("y_readPrr: ");                             // 
+      tft.println(x_readPrr);                               // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_WHITE);        // Вывести квадрат
+      break;                                                // 
+    //----------------------------------------------------------------------------------------------------------------------------
+    case 8:                                                 // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_BLACK);        // Вывести квадрат
+      xs_readPrr = val;												              // 
+      tft.setCursor(0, 10);                                 // 
+      tft.print("xs_readPrr: ");                            // 
+      tft.println(x_readPrr);                               // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_WHITE);        // Вывести квадрат
+      break;                                                // 
+    //----------------------------------------------------------------------------------------------------------------------------
+    case 9:                                                 // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_BLACK);        // Вывести квадрат
+      ys_readPrr = val;												              // 
+      tft.setCursor(0, 10);                                 // 
+      tft.print("ys_readPrr: ");                            // 
+      tft.println(x_readPrr);                               // 
+      tft.drawRect(x_readPrr,y_readPrr, xs_readPrr, ys_readPrr, TFT_WHITE);        // Вывести квадрат
+      break;                                                // 
+    //----------------------------------------------------------------------------------------------------------------------------
+    case 10:                                                // 
+      LoadMaxReal = val;												            // 
+      tft.setCursor(0, 10);                                 // 
+      tft.print("LoadMaxReal: ");                           // 
+      tft.println(LoadMaxReal);                             // 
       break;                                                // 
     //----------------------------------------------------------------------------------------------------------------------------
     case 99:                                                // 
